@@ -1,4 +1,7 @@
 const u = require("./underscore");
+
+//this is mainly for testing
+
 var testVal = {
    "_id": "HB - test",
    "_rev": "1-a8cb317e9e4faf750d675843cb91c58e",
