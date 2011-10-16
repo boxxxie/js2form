@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Store Editor</title>
+    <link href="layout.css" rel="stylesheet" type="text/css">
+    <link href="jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css">
+
+    <script language="javascript" type="text/javascript" src="../jquery-1.6.2.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../underscore.js"></script>
+    <script language="javascript" type="text/javascript" src="../js2form_new.js"></script>
+    <script language="javascript" type="text/javascript" src="testing.js"></script>
+
+  </head>
+<body>
+  <h1>Store Editor</h1>
+  <form id="testForm" action="javascript:test()">
+    <dl>
+      <dt>IDs</dt>
+      <dd><input type="hidden" name="_rev" value=""/>
+      <dl>
+	<dt>Company</dt>
+	<dd><label>name <input id="company" type="text" name="ids.chain" value="" readonly=true/></label>
+	  <label>short name <input id="company_short" type="text" name="ids.chain_min" value="" size=5 maxlength=5 readonly=true/></label></dd>
+	<dt>Store</dt>
+	<dd><label>name <input type="text" name="ids.store" value="" readonly=true/></label>
+	  <label>short name <input type="text" name="ids.store_min" value="" size=5 maxlength=5 readonly=true/></label></dd>
+	 </br>
+	 <label>Store number <input type="text" name="ids.store_num" value="" class="integer_field" readonly=true/></label>
+    </dd>
+    </dl>
+</dl>
+
+<dl>
+  <dt>Addess</dt>
+  <dd><dl>
+      <dt><label for="country">Country</label></dt>
+      <dd><input id="country" type="text" name="address.country"/></dd></dl>
+    
+    <dl>
+      <dt>Street address</dt>
+      <dd><TEXTAREA rows=3 cols=80 name=address.street class="string_array_field"></TEXTAREA></dd></dl>
+    
+    <dl>
+      <dt><label for="city">City</label></dt>
+      <dd><input id="city" type="text" name="address.city"/></dd></dl>
+    <dl>
+      <dt><label for="state_prov">State or Province</label></dt>
+      <dd><input id="state_prov" type="text" name="address.state_prov"/></dd></dl>
+    <dl>
+      <dt><label for="zip_postal">Zip or Postal Code</label></dt>
+      <dd><input id="zip_postal" type="text" name="address.zip_postal"/></dd></dl>
+    <dl>
+      <dt>Phone Numbers</dt>
+      <dd><TEXTAREA rows=3 cols=20 name=address.phones class="string_array_field"></TEXTAREA></dd></dl>
+    <dl>
+      <dt>Email addresses</dt>
+      <dd><TEXTAREA rows=3 cols=30 name=address.emails class="string_array_field"></TEXTAREA></dd></dl>
+    <dl>
+      <dt><label for="contact">Contact:</label></dt>
+      <dd><input id="contact" type="text" name="contact"/></dd></dl>
+  </dd>
+</dl>
+
+
+
+<dl>
+  <dt>Operation hours</dt>
+  <div id="input1" class="clonedInput">
+    <dd>
+      <label>days <input type="text" name="operation_hours[0].days" value="" /></label>
+      <label>hours <input type="text" name="operation_hours[0].hours" value="" /></label>	
+    </dd>
+  </div>
+</dl>
+
+<div>
+  <input type="button" id="btnAdd" value="add days/hours" />
+  <input type="button" id="btnDel" value="remove days/hours" />
+</div>
+
+<dl>
+  <dt>Taxes</dt>
+  <dd>
+    <dl>
+      <dt>Tax1</dt>
+      <dd><input type="hidden" name="taxes[0].taxId" value="0" />
+	<label>Number <input type="text" name="taxes[0].number" value="" /></label>
+	<label>Percent <input type="text" name="taxes[0].percent" value="" class="integer_field" size=2 maxlength=2/></label></dd>	
+      <dt>Tax2</dt>
+      <dd><input type="hidden" name="taxes[1].taxId" value="1" />
+	<label>Number <input type="text" name="taxes[1].number" value="" /></label>
+	<label>Percent <input type="text" name="taxes[1].percent" value="" class="integer_field" size=2 maxlength=2 /></label></dd>	
+      <dt>Tax3</dt>
+      <dd><input type="hidden" name="taxes[2].taxId" value="2" />
+	<label>Number <input type="text" name="taxes[2].number" value="" /></label>
+	<label>Percent <input type="text" name="taxes[2].percent" value="" class="integer_field" size=2 maxlength=2/></label></dd>	
+    </dl>
+  </dd>
+</dl>
+
+<dl>
+  <dt>Exemption</dt>
+  <dd>
+    <label>Amount <input type="text" name="exemption.amount" value="" class="integer_field" /></label>
+    <label>Enabled? <input type="checkbox" name="exemption.enabled" value=true /></label>	
+  </dd>
+</dl>
+<dl> <label>website <input type="text" name="website" value="" /></label></dl>
+<input type="submit" />
+</form>
+
+
+<pre><code id="testArea">
+</code></pre>
+
+
+
+</body>
+</html>

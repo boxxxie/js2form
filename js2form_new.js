@@ -22,10 +22,10 @@ function valueIsComplex(item){
     return !valueIsSimple(item);
 }
 function applyPrefix(name,prefix){
-    if(u.isUndefined(prefix)){
+    if(_.isUndefined(prefix)){
 	return name;
     }
-    else if(u.isNumber(parseInt(name))){
+    else if(_.isNumber(parseInt(name))){
 	return prefix + "["+ name +"]";
     }
     else{
@@ -34,8 +34,8 @@ function applyPrefix(name,prefix){
 };
 function o2a(obj,prefix){
 
-    var keys = u.keys(obj);
-    var vals = u.values(obj);
+    var keys = _.keys(obj);
+    var vals = _.values(obj);
     var firstStep = _(_.zip(keys,vals)).chain()
 	.map(function(keyVal){
 		 var key = keyVal[0];
@@ -46,7 +46,7 @@ function o2a(obj,prefix){
     var completed = _.filter(firstStep,valueIsSimple);
     var toBeWorkedOn = _.filter(firstStep,valueIsComplex);
 
-    if(u.isEmpty(toBeWorkedOn)){
+    if(_.isEmpty(toBeWorkedOn)){
 	return completed;
     }
     else{
@@ -60,20 +60,47 @@ function o2a(obj,prefix){
     }
 };
 
+//matches a name from {name: ...} to a string
 function nameMatch(name){
     return function(item){
 	return (item.name == name);
     };
 };
 
-function populateForm(js){
+function nodesProcessor(jsObj,nodes,callback){
+    function jsNodeProcessor(obj){
+	return function nodeProcessor(node){
+	    return callback(obj,node);
+	};
+    };
+    var jsObjNodeProcessor = jsNodeProcessor(jsObj);
+    _.each(nodes,function(node){ 
+	       jsObj = jsObjNodeProcessor(node);
+	   });
+    return jsObj;
+};
+
+function formElementPopulator($node,value){
+    $node.val(value);
+    if($node.attr('type') == 'checkbox' && value){
+	$node.attr('checked',value);
+    }
+};
+
+function populateForm(js,transformer){
+    var nodesToPopulate = document.querySelectorAll('[name]');
+    if(!_.isUndefined(transformer)){
+	js = nodesProcessor(js,nodesToPopulate,transformer);
+    }
+
     var arr = o2a(js);
-    _(document.querySelectorAll('[name]'))
+    _(nodesToPopulate)
 	.chain()
 	.each(function(item){
-		 var nameAtt = $(item).attr('name');
-		 var formVal = _.detect(arr,nameMatch).value;
-		 $(item).val(formVal);
-	     })
-	.value();
+		  var $item = $(item);
+		  var nameAtt = $item.attr('name');
+		  var itemForForm = _.detect(arr,nameMatch(nameAtt));
+		  var valForForm = itemForForm.value;
+		  formElementPopulator($item,valForForm);
+	     });
 }
