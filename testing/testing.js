@@ -76,5 +76,6 @@ $(document)
 		   return obj;
 	       };
 
-	       populateForm(testData,transformer);
+	       var $form = $("testForm").find("[name]")
+	       populateForm($form,testData,transformer);
 	   });
