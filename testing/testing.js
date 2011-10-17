@@ -65,54 +65,13 @@ $(document)
 		   },
 		   "website": "www.heroburger.com"
 	       }; 
-
-	       /*
-		* The 3 functions below are for transforming the js datastructure to conform to the form structure in the HTML
-		* extract/simplify these so that a user only needs to implement one function and that it is simple.
-		* */
-	       function recursiveTrav(obj,travel){
-		   if(_.isEmpty(travel)){
-		       return obj;
-		   }
-		   if(!obj){
-		       return null;
-		   }
-		   var prop = travel.shift();
-		   return recursiveTrav(obj[prop],travel);
-	       };
-	       function recursiveAssign(obj,travel,toAssign){
-		   if(_.isEmpty(travel)){
-		       obj = toAssign;
-		       return obj;
-		   }
-		   if(!obj){
-		       return null;
-		   }
-		   var prop = _.first(travel);
-		   obj[prop] = recursiveAssign(obj[prop],_.rest(travel),toAssign);
-		   return obj;
-	       };
-	       function transformer(obj,node){
-		   node = $(node);
-		   var nodeClass = node.attr('var_type');
-		   var nodeName = node.attr('name');
-		   var objPropToChange = recursiveTrav(obj,nodeName.split("."));
-
-		   if(!nodeName){
-		       return obj;
-		   }
-		   if(!objPropToChange){
-		       return obj;
-		   }
-		   if(!nodeClass){
-		       return obj;
-		   }
-
-		   switch (nodeClass){
-		   case "string_array_field":{
-		       obj = recursiveAssign(obj,nodeName.split("."), objPropToChange.join("\n"));
-		       console.log(recursiveTrav(obj,nodeName.split(".")));
-		       break;}
+	       
+	       function transformer(obj,$node){
+		   var varType = $node.attr('var_type');
+		   if(varType){
+		       switch (varType){
+		       case "string_array_field":{return obj.join("\n");}
+		       }
 		   }
 		   return obj;
 	       };

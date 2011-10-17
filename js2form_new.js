@@ -59,7 +59,33 @@ function o2a(obj,prefix){
 	    .value();
     }
 };
+/*
+ * The 3 functions below are for transforming the js datastructure to conform to the form structure in the HTML
+ * extract/simplify these so that a user only needs to implement one function and that it is simple.
+ * */
+function recursiveTrav(obj,travel){
+    if(_.isEmpty(travel)){
+	return obj;
+    }
+    if(!obj){
+	return null;
+    }
+    var prop = _.first(travel);
+    return recursiveTrav(obj[prop],_.rest(travel));
+};
 
+function recursiveAssign(obj,travel,toAssign){
+    if(_.isEmpty(travel)){
+	obj = toAssign;
+	return obj;
+    }
+    if(!obj){
+	return null;
+    }
+    var prop = _.first(travel);
+    obj[prop] = recursiveAssign(obj[prop],_.rest(travel),toAssign);
+    return obj;
+};
 //matches a name from {name: ...} to a string
 function nameMatch(name){
     return function(item){
@@ -67,7 +93,23 @@ function nameMatch(name){
     };
 };
 
-function nodesProcessor(jsObj,nodes,callback){
+function nodesProcessor(obj,nodes,callback){
+    _.each(nodes,function(node){ 
+	       var $node = $(node);
+	       var varType = $node.attr('var_type');
+	       var nodeName = $node.attr('name');
+	       var varPath = nodeName.split(".");
+	       var objPropToChange = recursiveTrav(obj,varPath);
+
+	       if(nodeName || objPropToChange){
+		   obj = recursiveAssign(obj,
+					 varPath,
+					 callback(objPropToChange,$node));
+	       }
+	   });
+    return obj;
+};
+function nodesProcessor_old(jsObj,nodes,callback){
     function jsNodeProcessor(obj){
 	return function nodeProcessor(node){
 	    return callback(obj,node);
