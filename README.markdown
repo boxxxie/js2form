@@ -33,7 +33,7 @@ function transformer(obj,$node){
 populateForm(testData,transformer);
 ```
 
-the above function will transform data that is supposed to be put into an input with a field of var_type = "string_array_field". the data being submitted is in the form of an array, but the input wants a string, so the case resolves this issue with obj.join("\n");
+the above function will transform data that is supposed to be put into an input with a field of ``` var_type = "string_array_field" ``` . The data being submitted is in the form of an array, but the input wants a string, so the case resolves this issue with ``` obj.join("\n");```
 
 this is completely controlled by the user. the obj variable is the branch of the object that matches, not the root of the object.
 
