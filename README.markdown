@@ -42,4 +42,8 @@ this is completely controlled by the user. the obj variable is the branch of the
 
 the transformation callback function's second variable is a jQuery object.
 
-populateForm takes in a 3rd argument that is a path transformation function. by default it transforms JS object notation into a path array. eg ``` name.name[3][4] -> [name,name,3,4] ``` you can make your own functions and have any notation you like so long as the path translation function outputs a path array.
+populateForm takes in a 3rd argument that is a path transformation function. by default it transforms JS object notation into a path array. eg ``` name.name[3][4] -> [name,name,3,4] ``` you can make your own functions and have any notation you like so long as the path translation function outputs a path array. so below, ``` name="ids.store_num" ``` gets translated into ``` [ids,store_num] ```. if you want a different notation then simply supply a function that translates it and pass it to populateForm().
+
+```
+<label>Store number <input type="text" name="ids.store_num" value="" var_type="integer_field" readonly=true/></label>
+```
