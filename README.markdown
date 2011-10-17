@@ -19,7 +19,7 @@ will place "4" in the value of this input field by calling ``` populateForm(test
 
 it is also possilbe to transform some of the data to fit into the form via a transformer function.
 
-```
+```javascript
 function transformer(obj,$node){
     var varType = $node.attr('var_type');
     if(varType){
