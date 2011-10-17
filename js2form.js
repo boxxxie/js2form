@@ -36,7 +36,7 @@ var populateForm =
 		 .replace(/\]/g,'')
 		 .split(".");
 	 };
-	 function nodesProcessor(obj,$nodes,callback,pather){
+	 function nodesProcessor(obj,$nodes,varAtt,callback,pather){
 	     /*changes the shape of the obj to suit the form
 	      *e.g. {i : ["1","2","3"]} -> {i:"123"} 
 	      */
@@ -48,7 +48,7 @@ var populateForm =
 	     }
 	     $($nodes).each(function(){ 
 			var varType = $(this).attr('var_type');
-			var nodeName = $(this).attr('name'); //FIXME: this should be user selectable
+			var nodeName = $(this).attr(varAtt);
 			var varPath = pathTranslator(nodeName);
 			var objPropToChange = getFromPath(obj,varPath);
 			if(nodeName || objPropToChange){
@@ -66,15 +66,15 @@ var populateForm =
 		 $node.attr('checked',value);
 	     }
 	 };
-	 return function populateForm($nodes,obj,transformer,pather){
+	 return function populateForm($nodes,obj,varAtt,transformer,pather){
 	     if(_.isUndefined(pather)){var pathTranslator = jsPather;}
 	     else{var pathTranslator = pather;}
 
 	     if(!_.isUndefined(transformer)){
-		 obj = nodesProcessor(obj,$nodes,transformer,pather);
+		 obj = nodesProcessor(obj,$nodes,varAtt,transformer,pather);
 	     }
 	     $($nodes).each(function(){
-			var nameAtt = $(this).attr('name'); //FIXME: this should be user selectable
+			var nameAtt = $(this).attr(varAtt);
 			var path = pathTranslator(nameAtt);
 			var valForForm = getFromPath(obj,path);
 			formElementPopulator($(this),valForForm);
