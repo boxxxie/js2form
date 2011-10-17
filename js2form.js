@@ -33,7 +33,6 @@ var populateForm = (function (){
 	 }
      };
      function object2array(obj,prefix){
-
 	 var keys = _.keys(obj);
 	 var vals = _.values(obj);
 	 var firstStep = _(_.zip(keys,vals)).chain()
@@ -45,7 +44,6 @@ var populateForm = (function (){
 	     .value();
 	 var completed = _.filter(firstStep,valueIsSimple);
 	 var toBeWorkedOn = _.filter(firstStep,valueIsComplex);
-
 	 if(_.isEmpty(toBeWorkedOn)){
 	     return completed;
 	 }
@@ -59,7 +57,6 @@ var populateForm = (function (){
 		 .value();
 	 }
      };
-
      function recursiveTrav(obj,travel){
 	 if(_.isEmpty(travel)){
 	     return obj;
@@ -70,7 +67,6 @@ var populateForm = (function (){
 	 var prop = _.first(travel);
 	 return recursiveTrav(obj[prop],_.rest(travel));
      };
-
      function recursiveAssign(obj,travel,toAssign){
 	 if(_.isEmpty(travel)){
 	     obj = toAssign;
@@ -89,7 +85,6 @@ var populateForm = (function (){
 	     return (item.name == name);
 	 };
      };
-
      function nodesProcessor(obj,nodes,callback){
 	 _.each(nodes,function(node){ 
 		    var $node = $(node);
@@ -106,32 +101,17 @@ var populateForm = (function (){
 		});
 	 return obj;
      };
-     function nodesProcessor_old(jsObj,nodes,callback){
-	 function jsNodeProcessor(obj){
-	     return function nodeProcessor(node){
-		 return callback(obj,node);
-	     };
-	 };
-	 var jsObjNodeProcessor = jsNodeProcessor(jsObj);
-	 _.each(nodes,function(node){ 
-		    jsObj = jsObjNodeProcessor(node);
-		});
-	 return jsObj;
-     };
-
      function formElementPopulator($node,value){
 	 $node.val(value);
 	 if($node.attr('type') == 'checkbox' && value){
 	     $node.attr('checked',value);
 	 }
      };
-
      return function populateForm(js,transformer){
 	 var nodesToPopulate = document.querySelectorAll('[name]');
 	 if(!_.isUndefined(transformer)){
 	     js = nodesProcessor(js,nodesToPopulate,transformer);
 	 }
-
 	 var arr = object2array(js);
 	 _(nodesToPopulate)
 	     .chain()
