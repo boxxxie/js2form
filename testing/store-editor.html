@@ -25,7 +25,7 @@
 	<dd><label>name <input type="text" name="ids.store" value="" readonly=true/></label>
 	  <label>short name <input type="text" name="ids.store_min" value="" size=5 maxlength=5 readonly=true/></label></dd>
 	 </br>
-	 <label>Store number <input type="text" name="ids.store_num" value="" class="integer_field" readonly=true/></label>
+	 <label>Store number <input type="text" name="ids.store_num" value="" var_type="integer_field" readonly=true/></label>
     </dd>
     </dl>
 </dl>
@@ -38,7 +38,7 @@
     
     <dl>
       <dt>Street address</dt>
-      <dd><TEXTAREA rows=3 cols=80 name=address.street class="string_array_field"></TEXTAREA></dd></dl>
+      <dd><TEXTAREA rows=3 cols=80 name=address.street var_type="string_array_field"></TEXTAREA></dd></dl>
     
     <dl>
       <dt><label for="city">City</label></dt>
@@ -51,10 +51,10 @@
       <dd><input id="zip_postal" type="text" name="address.zip_postal"/></dd></dl>
     <dl>
       <dt>Phone Numbers</dt>
-      <dd><TEXTAREA rows=3 cols=20 name=address.phones class="string_array_field"></TEXTAREA></dd></dl>
+      <dd><TEXTAREA rows=3 cols=20 name=address.phones var_type="string_array_field"></TEXTAREA></dd></dl>
     <dl>
       <dt>Email addresses</dt>
-      <dd><TEXTAREA rows=3 cols=30 name=address.emails class="string_array_field"></TEXTAREA></dd></dl>
+      <dd><TEXTAREA rows=3 cols=30 name=address.emails var_type="string_array_field"></TEXTAREA></dd></dl>
     <dl>
       <dt><label for="contact">Contact:</label></dt>
       <dd><input id="contact" type="text" name="contact"/></dd></dl>
@@ -85,15 +85,15 @@
       <dt>Tax1</dt>
       <dd><input type="hidden" name="taxes[0].taxId" value="0" />
 	<label>Number <input type="text" name="taxes[0].number" value="" /></label>
-	<label>Percent <input type="text" name="taxes[0].percent" value="" class="integer_field" size=2 maxlength=2/></label></dd>	
+	<label>Percent <input type="text" name="taxes[0].percent" value="" var_type="integer_field" size=2 maxlength=2/></label></dd>	
       <dt>Tax2</dt>
       <dd><input type="hidden" name="taxes[1].taxId" value="1" />
 	<label>Number <input type="text" name="taxes[1].number" value="" /></label>
-	<label>Percent <input type="text" name="taxes[1].percent" value="" class="integer_field" size=2 maxlength=2 /></label></dd>	
+	<label>Percent <input type="text" name="taxes[1].percent" value="" var_type="integer_field" size=2 maxlength=2 /></label></dd>	
       <dt>Tax3</dt>
       <dd><input type="hidden" name="taxes[2].taxId" value="2" />
 	<label>Number <input type="text" name="taxes[2].number" value="" /></label>
-	<label>Percent <input type="text" name="taxes[2].percent" value="" class="integer_field" size=2 maxlength=2/></label></dd>	
+	<label>Percent <input type="text" name="taxes[2].percent" value="" var_type="integer_field" size=2 maxlength=2/></label></dd>	
     </dl>
   </dd>
 </dl>
@@ -101,7 +101,7 @@
 <dl>
   <dt>Exemption</dt>
   <dd>
-    <label>Amount <input type="text" name="exemption.amount" value="" class="integer_field" /></label>
+    <label>Amount <input type="text" name="exemption.amount" value="" var_type="integer_field" /></label>
     <label>Enabled? <input type="checkbox" name="exemption.enabled" value=true /></label>	
   </dd>
 </dl>

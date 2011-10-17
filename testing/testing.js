@@ -94,7 +94,7 @@ $(document)
 	       };
 	       function transformer(obj,node){
 		   node = $(node);
-		   var nodeClass = node.attr('class');//TODO:change to var_name and var_type
+		   var nodeClass = node.attr('var_type');
 		   var nodeName = node.attr('name');
 		   var objPropToChange = recursiveTrav(obj,nodeName.split("."));
 
