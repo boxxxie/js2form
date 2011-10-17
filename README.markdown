@@ -15,7 +15,7 @@ in thise case:
 ```
 test = { id : { store_num : 4} };
 ```
-will place "4" in the value of this input field by calling  populateForm(test);
+will place "4" in the value of this input field by calling ``` populateForm(test); ```
 
 it is also possilbe to transform some of the data to fit into the form via a transformer function.
 
