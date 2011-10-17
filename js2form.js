@@ -126,7 +126,7 @@ var populateForm = (function (){
 	 }
      };
 
-     function populateForm(js,transformer){
+     return function populateForm(js,transformer){
 	 var nodesToPopulate = document.querySelectorAll('[name]');
 	 if(!_.isUndefined(transformer)){
 	     js = nodesProcessor(js,nodesToPopulate,transformer);
@@ -142,5 +142,5 @@ var populateForm = (function (){
 		       var valForForm = itemForForm.value;
 		       formElementPopulator($item,valForForm);
 		   });
-     }
+     };
 })();
