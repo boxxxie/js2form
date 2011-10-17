@@ -48,7 +48,7 @@ var populateForm =
 	     }
 	     $($nodes).each(function(){ 
 			var varType = $(this).attr('var_type');
-			var nodeName = $(this).attr('name');
+			var nodeName = $(this).attr('name'); //FIXME: this should be user selectable
 			var varPath = pathTranslator(nodeName);
 			var objPropToChange = getFromPath(obj,varPath);
 			if(nodeName || objPropToChange){
@@ -66,7 +66,6 @@ var populateForm =
 		 $node.attr('checked',value);
 	     }
 	 };
-	 //FIXME: make it so that this will work on a single form. right now it operates on the whole page
 	 return function populateForm($nodes,obj,transformer,pather){
 	     if(_.isUndefined(pather)){var pathTranslator = jsPather;}
 	     else{var pathTranslator = pather;}
@@ -75,7 +74,7 @@ var populateForm =
 		 obj = nodesProcessor(obj,$nodes,transformer,pather);
 	     }
 	     $($nodes).each(function(){
-			var nameAtt = $(this).attr('name');
+			var nameAtt = $(this).attr('name'); //FIXME: this should be user selectable
 			var path = pathTranslator(nameAtt);
 			var valForForm = getFromPath(obj,path);
 			formElementPopulator($(this),valForForm);
