@@ -1,6 +1,6 @@
 An easy way to put a JS object into a structured HTML form.
 
-This library relies on underscore.js and jQuery.js
+This library depends on underscore.js and jQuery.js
 
 This is a library based off of the dev branch of form2js https://github.com/maxatwork/form2js .
 
