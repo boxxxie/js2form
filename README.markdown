@@ -5,6 +5,9 @@ This library relies on underscore.js and jQuery.js
 This is a library based off of the dev branch of form2js https://github.com/maxatwork/form2js .
 
 
+currently this will work with any HTML elements with the proper attributes set. in the future (when someone requests it) i'll make this work on a per form basis.
+
+
 Adding a name field to a input field will match that against the object you give it and try to fill in the field appropiately.
 
 ```
@@ -13,7 +16,7 @@ Adding a name field to a input field will match that against the object you give
 
 in thise case:
 ```
-test = { id : { store_num : 4} };
+test = { ids : { store_num : 4} };
 ```
 will place "4" in the value of this input field by calling ``` populateForm(test); ```
 
@@ -38,3 +41,5 @@ the above function will transform data that is supposed to be put into an input 
 this is completely controlled by the user. the obj variable is the branch of the object that matches, not the root of the object.
 
 the transformation callback function's second variable is a jQuery object.
+
+populateForm takes in a 3rd argument that is a path transformation function. by default it transforms JS object notation into a path array. eg ``` name.name[3][4] -> [name,name,3,4] ``` you can make your own functions and have any notation you like so long as the path translation function outputs a path array.
