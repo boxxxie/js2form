@@ -1,3 +1,15 @@
+This may be more useful as a learning tool than a real tool.
+it should work for the most part, but it's not being maintained anymore because there are far better solutions to this problem.
+
+i recommend people to look at handlebars.js and icanhaz.js.
+i personally use icanhaz.js to solve this problem.
+
+feel free to ask questions about the code and fork/pull request.
+
+
+-----------------------------------------------------------
+
+
 An easy way to put a JS object into a structured HTML form.
 
 This library depends on underscore.js and jQuery.js
